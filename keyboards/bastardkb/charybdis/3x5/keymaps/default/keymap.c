@@ -20,7 +20,7 @@
 enum charybdis_keymap_layers {
     LAYER_BASE = 0,
     LAYER_NUM,
-    LAYER_RAISE,
+    LAYER_SYM,
 };
 
 // combos
@@ -48,25 +48,25 @@ enum combos {
 
 };
 
-const uint16_t PROGMEM s_d_x[] = { KC_S, KC_D, COMBO_END};
-const uint16_t PROGMEM p_f_v[] = { KC_P, KC_F, COMBO_END};
-const uint16_t PROGMEM r_s_q[] = { KC_R, KC_S, COMBO_END};
-const uint16_t PROGMEM f_t_z[] = { KC_F, KC_T, COMBO_END};
-const uint16_t PROGMEM r_t_esc[] = { KC_R, KC_T, COMBO_END};
+const uint16_t PROGMEM s_d_x[] = { C_S_T(KC_S), LGUI_T(KC_D), COMBO_END};
+const uint16_t PROGMEM p_f_v[] = { LSG_T(KC_P), KC_F, COMBO_END};
+const uint16_t PROGMEM r_s_q[] = { MT(MOD_LCTL | MOD_LGUI,KC_R), C_S_T(KC_S), COMBO_END};
+const uint16_t PROGMEM f_t_z[] = { KC_F, LCA_T(KC_T), COMBO_END};
+const uint16_t PROGMEM r_t_esc[] = { MT(MOD_LCTL | MOD_LGUI,KC_R), LCA_T(KC_T), COMBO_END};
 const uint16_t PROGMEM w_f_tab[] = { KC_W, KC_F, COMBO_END};
-const uint16_t PROGMEM k_c_0[] = { KC_K, KC_C, COMBO_END};
-const uint16_t PROGMEM c_d_1[] = { KC_C, KC_D, COMBO_END};
-const uint16_t PROGMEM k_d_2[] = { KC_K, KC_D, COMBO_END};
-const uint16_t PROGMEM comm_dot_slash[] = { KC_COMM, KC_DOT, COMBO_END};
-const uint16_t PROGMEM m_comm_minus[] = { KC_M, KC_COMM, COMBO_END};
-const uint16_t PROGMEM e_i_quote[] = { KC_E, KC_I, COMBO_END};
-const uint16_t PROGMEM n_e_equal[] = { KC_N, KC_E, COMBO_END};
-const uint16_t PROGMEM m_dot_astr[] = { KC_M, KC_DOT, COMBO_END};
-const uint16_t PROGMEM a_r_del[] = { KC_A, KC_R, COMBO_END};
-const uint16_t PROGMEM t_g_lalt_f4[] = { KC_T, KC_G, COMBO_END};
-const uint16_t PROGMEM n_m_circ[] = { KC_N, KC_M, COMBO_END};
-const uint16_t PROGMEM e_comm_dollar[] = { KC_E, KC_COMM, COMBO_END};
-const uint16_t PROGMEM i_dot_exclaim[] = { KC_I, KC_DOT, COMBO_END};
+const uint16_t PROGMEM k_c_0[] = { LCTL_T(KC_K), LALT_T(KC_C), COMBO_END};
+const uint16_t PROGMEM c_d_1[] = { LALT_T(KC_C), LGUI_T(KC_D), COMBO_END};
+const uint16_t PROGMEM k_d_2[] = { LCTL_T(KC_K), LGUI_T(KC_D), COMBO_END};
+const uint16_t PROGMEM comm_dot_slash[] = { LALT_T(KC_COMM), LCTL_T(KC_DOT), COMBO_END};
+const uint16_t PROGMEM m_comm_minus[] = { LGUI_T(KC_H), LALT_T(KC_COMM), COMBO_END};
+const uint16_t PROGMEM e_i_quote[] = { C_S_T(KC_E), MT(MOD_LCTL | MOD_LGUI,KC_I), COMBO_END};
+const uint16_t PROGMEM n_e_equal[] = { LCA_T(KC_N), C_S_T(KC_E), COMBO_END};
+const uint16_t PROGMEM m_dot_astr[] = { LGUI_T(KC_H), LCTL_T(KC_DOT), COMBO_END};
+const uint16_t PROGMEM a_r_del[] = { KC_A, MT(MOD_LCTL | MOD_LGUI,KC_R), COMBO_END};
+const uint16_t PROGMEM t_g_lalt_f4[] = { LCA_T(KC_T), KC_G, COMBO_END};
+const uint16_t PROGMEM n_m_circ[] = { LCA_T(KC_N), LGUI_T(KC_H), COMBO_END};
+const uint16_t PROGMEM e_comm_dollar[] = { C_S_T(KC_E), LALT_T(KC_COMM), COMBO_END};
+const uint16_t PROGMEM i_dot_exclaim[] = { MT(MOD_LCTL | MOD_LGUI,KC_I), LCTL_T(KC_DOT), COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
   [S_D_X] = COMBO(s_d_x, KC_X),
@@ -97,13 +97,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_BASE] = LAYOUT(
         // TODO: macro for tmux prefix on left top
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-          KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,       KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,
+          KC_Q,    KC_W,    KC_F,    LSG_T(KC_P),    KC_B,       LSG_T(KC_J),    KC_L,    KC_U,    KC_Y,    KC_SCLN,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-          KC_A,    KC_R,    KC_S,    KC_T,    KC_G,       KC_M,    KC_N,    KC_E,    KC_I, KC_O,
+          KC_A,    MT(MOD_LCTL | MOD_LGUI,KC_R),    C_S_T(KC_S),    LCA_T(KC_T),    KC_G,       KC_M,    LCA_T(KC_N),    C_S_T(KC_E),    MT(MOD_LCTL | MOD_LGUI,KC_I), KC_O,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-          KC_NO,    KC_K,    KC_C,    KC_D,    KC_NO,       KC_NO,    KC_M, KC_COMM,  KC_DOT, KC_NO,
+KC_NO, LCTL_T(KC_K), LALT_T(KC_C), LGUI_T(KC_D),KC_NO,     KC_NO,    LGUI_T(KC_H), LALT_T(KC_COMM),  LCTL_T(KC_DOT), KC_NO,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         KC_BTN1	, KC_LSFT,   KC_BSPC,      LT(1,KC_ENTER), KC_SPACE
+                         KC_BTN1,KC_LSFT, LT(2,KC_BSPC),      LT(1,KC_ENTER), KC_SPACE
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
@@ -119,15 +119,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
-  [LAYER_RAISE] = LAYOUT(
+  [LAYER_SYM] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, KC_VOLU, KC_MUTE, KC_VOLD, XXXXXXX,
+       XXXXXXX, KC_ASTR, KC_COMM, KC_DOT, XXXXXXX,    XXXXXXX, KC_LCBR, KC_RCBR, KC_SLASH, XXXXXXX,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_LEFT,   KC_UP, KC_DOWN, KC_RGHT, XXXXXXX,    XXXXXXX, KC_RSFT, KC_RCTL, KC_RALT, KC_RGUI,
+       KC_EXCLAIM,   KC_GRAVE, KC_SCLN, KC_EQUAL, KC_PERCENT,    KC_BSPC, KC_LPRN, KC_RPRN, KC_AMPR, XXXXXXX,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_HOME, KC_PGUP, KC_PGDN,  KC_END, XXXXXXX,    QK_BOOT, EE_CLR,  XXXXXXX, XXXXXXX, XXXXXXX,
+       KC_NO, KC_AT, KC_HASH,  KC_DOLLAR, XXXXXXX,    XXXXXXX, KC_LBRC,  KC_RBRC, KC_CIRC, XXXXXXX,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         _______, _______, XXXXXXX,    _______, XXXXXXX
+                         _______, _______, XXXXXXX,    KC_ENTER, LSFT_T(KC_SPACE)
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 };
