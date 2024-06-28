@@ -20,5 +20,5 @@
 
 /* Trackball angle adjustment. */
 #define ROTATIONAL_TRANSFORM_ANGLE -25
-#define COMBO_COUNT 19
+#define COMBO_COUNT 24
 #define TAPPING_TERM 200
