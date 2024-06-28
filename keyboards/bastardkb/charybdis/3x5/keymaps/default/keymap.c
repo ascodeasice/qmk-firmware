@@ -26,6 +26,59 @@ enum charybdis_keymap_layers {
     LAYER_FUNCTION,
 };
 
+// SECTION tap dance
+
+enum tap_dances {
+    UP_PGUP=0,
+    DOWN_PGDN,
+    LEFT_HOME,
+    RIGHT_END,
+};
+
+typedef struct {
+    uint16_t tap;
+    uint16_t hold;
+    uint16_t held;
+} tap_dance_tap_hold_t;
+
+void tap_dance_tap_hold_finished(tap_dance_state_t *state, void *user_data) {
+    tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)user_data;
+
+    if (state->pressed) {
+        if (state->count == 1
+#ifndef PERMISSIVE_HOLD
+            && !state->interrupted
+#endif
+        ) {
+            register_code16(tap_hold->hold);
+            tap_hold->held = tap_hold->hold;
+        } else {
+            register_code16(tap_hold->tap);
+            tap_hold->held = tap_hold->tap;
+        }
+    }
+}
+
+void tap_dance_tap_hold_reset(tap_dance_state_t *state, void *user_data) {
+    tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)user_data;
+
+    if (tap_hold->held) {
+        unregister_code16(tap_hold->held);
+        tap_hold->held = 0;
+    }
+}
+
+#define ACTION_TAP_DANCE_TAP_HOLD(tap, hold) \
+    { .fn = {NULL, tap_dance_tap_hold_finished, tap_dance_tap_hold_reset}, .user_data = (void *)&((tap_dance_tap_hold_t){tap, hold, 0}), }
+
+tap_dance_action_t tap_dance_actions[] = {
+    [UP_PGUP] = ACTION_TAP_DANCE_TAP_HOLD(KC_UP, KC_PGUP),
+    [DOWN_PGDN] = ACTION_TAP_DANCE_TAP_HOLD(KC_DOWN, KC_PGDN),
+    [LEFT_HOME] = ACTION_TAP_DANCE_TAP_HOLD(KC_LEFT, KC_HOME),
+    [RIGHT_END] = ACTION_TAP_DANCE_TAP_HOLD(KC_RIGHT, KC_END),
+};
+
+
 
 // SECTION macro
 
@@ -59,6 +112,8 @@ enum macros {
 
 // Macro Definitions
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    tap_dance_action_t *action;
+
     switch (keycode) {
         case TMUX_PREFIX:
             if (record->event.pressed) {
@@ -261,6 +316,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
 
+        // list all tap dance keycodes with tap-hold configurations
+        case TD(UP_PGUP):
+        case TD(DOWN_PGDN):
+        case TD(LEFT_HOME):
+        case TD(RIGHT_END):
+            action = &tap_dance_actions[QK_TAP_DANCE_GET_INDEX(keycode)];
+            if (!record->event.pressed && action->state.count && !action->state.finished) {
+                tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
+                tap_code16(tap_hold->tap);
+            }
+
 
     }
     return true;
@@ -352,7 +418,6 @@ combo_t key_combos[COMBO_COUNT] = {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_BASE] = LAYOUT(
-        // TODO: macro for tmux prefix on left top
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
           TMUX_PREFIX,    KC_W,    KC_F,    LSG_T(KC_P),    KC_B,       LSG_T(KC_J),    KC_L,    KC_U,    KC_Y,    KC_SCLN,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
@@ -386,12 +451,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                          _______, _______, XXXXXXX,    KC_ENTER, LSFT_T(KC_SPACE)
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
-    // TOOD: implement the tap dance here for direction
   [LAYER_NAV] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       XXXXXXX, LALT(KC_F4), KC_MS_UP, LALT(KC_TAB), XXXXXXX,    XXXXXXX, KC_APP, KC_UP, XXXXXXX, XXXXXXX,
+       XXXXXXX, LALT(KC_F4), KC_MS_UP, LALT(KC_TAB), XXXXXXX,    XXXXXXX, KC_APP, TD(UP_PGUP), XXXXXXX, XXXXXXX,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_ESC,   KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT,KC_NO, KC_ENTER,    KC_LEFT, KC_DOWN, KC_RIGHT, XXXXXXX,
+       KC_ESC,   KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT,KC_NO, KC_ENTER,    TD(LEFT_HOME), TD(DOWN_PGDN), TD(RIGHT_END), XXXXXXX,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_NO, KC_LCTL, KC_NO,  KC_CAPS, XXXXXXX,    XXXXXXX, KC_LBRC,  KC_RBRC, KC_CIRC, XXXXXXX,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
@@ -399,7 +463,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
-    // TODO: use tap dance for index
   [LAYER_SHORTCUT] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        XXXXXXX, CONST, INDEX_J, INDEX1, XXXXXXX,    XXXXXXX, SQL_SELECT_ALL, XXXXXXX, LENGTH, XXXXXXX,
