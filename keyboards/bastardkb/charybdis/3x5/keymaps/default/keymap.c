@@ -393,7 +393,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_ESC,   KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT,KC_NO, KC_ENTER,    KC_LEFT, KC_DOWN, KC_RIGHT, XXXXXXX,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_NO, KC_NO, KC_NO,  KC_CAPS, XXXXXXX,    XXXXXXX, KC_LBRC,  KC_RBRC, KC_CIRC, XXXXXXX,
+       KC_NO, KC_LCTL, KC_NO,  KC_CAPS, XXXXXXX,    XXXXXXX, KC_LBRC,  KC_RBRC, KC_CIRC, XXXXXXX,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______, _______, XXXXXXX,    KC_ENTER, KC_SPACE
   //                   ╰───────────────────────────╯ ╰──────────────────╯
@@ -402,7 +402,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // TODO: use tap dance for index
   [LAYER_SHORTCUT] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       XXXXXXX, XXXXXXX, INDEX_J, INDEX1, XXXXXXX,    XXXXXXX, SQL_SELECT_ALL, XXXXXXX, LENGTH, XXXXXXX,
+       XXXXXXX, CONST, INDEX_J, INDEX1, XXXXXXX,    XXXXXXX, SQL_SELECT_ALL, XXXXXXX, LENGTH, XXXXXXX,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_NO,   STU_ID, INDEX_I, INDEX0, KC_NO,          XXXXXXX, EXPORT,    DEFAULT, FUNCTION, RETURN,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
