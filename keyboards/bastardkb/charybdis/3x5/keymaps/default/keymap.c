@@ -22,18 +22,39 @@ enum charybdis_keymap_layers {
     LAYER_NUM,
     LAYER_SYM,
     LAYER_NAV,
+    LAYER_SHORTCUT,
+    LAYER_FUNCTION,
 };
 
 
-// macro
+// SECTION macro
 
 enum macros {
-    TMUX_PREFIX = SAFE_RANGE, // using SAFE_RANGE is required to prevent clashing with other keycode
+    TMUX_PREFIX = SAFE_RANGE, // USING SAFE_RANGE IS REQUIRED TO PREVENT CLASHING WITH OTHER KEYCODE
     LAN_SWITCH,
     OR,
     KEY,
     L_DIR,
     HOME_DIR,
+    CONST,
+    FUNCTION,
+    RETURN,
+    EXPORT,
+    IMPORT,
+    CONTINUE,
+    STU_ID,
+    INDEX_I,
+    INDEX_J,
+    INDEX_K,
+    INDEX0,
+    INDEX1,
+    INDEX2,
+    LENGTH,
+    LOCALHOST_URL,
+    VIM_REPLACE,
+    VIM_EXIT,
+    SQL_SELECT_ALL,
+    DEFAULT,
 };
 
 // Macro Definitions
@@ -87,13 +108,165 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
 
+
+        case CONST:
+            if(record->event.pressed){
+                SEND_STRING("const ");
+            }else{
+
+            }
+            break;
+
+        case FUNCTION:
+            if(record->event.pressed){
+                SEND_STRING("function ");
+            }else{
+
+            }
+            break;
+
+        case RETURN:
+            if(record->event.pressed){
+                SEND_STRING("return ");
+            }else{
+
+            }
+            break;
+
+        case EXPORT:
+            if(record->event.pressed){
+                SEND_STRING("export ");
+            }else{
+
+            }
+            break;
+
+        case IMPORT:
+            if(record->event.pressed){
+                SEND_STRING("import ");
+            }else{
+
+            }
+            break;
+
+        case CONTINUE:
+            if(record->event.pressed){
+                SEND_STRING("continue");
+            }else{
+
+            }
+            break;
+
+        case STU_ID:
+            if(record->event.pressed){
+                SEND_STRING("E24106254");
+            }else{
+
+            }
+            break;
+
+        case INDEX_I:
+            if(record->event.pressed){
+                SEND_STRING("[i]");
+            }else{
+
+            }
+            break;
+
+        case INDEX_J:
+            if(record->event.pressed){
+                SEND_STRING("[j]");
+            }else{
+
+            }
+            break;
+
+        case INDEX_K:
+            if(record->event.pressed){
+                SEND_STRING("[k]");
+            }else{
+
+            }
+            break;
+
+        case INDEX0:
+            if(record->event.pressed){
+                SEND_STRING("[0]");
+            }else{
+
+            }
+            break;
+
+        case INDEX1:
+            if(record->event.pressed){
+                SEND_STRING("[1]");
+            }else{
+
+            }
+            break;
+
+        case INDEX2:
+            if(record->event.pressed){
+                SEND_STRING("[2]");
+            }else{
+
+            }
+            break;
+
+        case LENGTH:
+            if(record->event.pressed){
+                SEND_STRING("length");
+            }else{
+
+            }
+            break;
+
+        case LOCALHOST_URL:
+            if(record->event.pressed){
+                SEND_STRING("http://localhost:");
+            }else{
+
+            }
+            break;
+
+        case VIM_REPLACE:
+            if(record->event.pressed){
+                SEND_STRING(SS_TAP(X_ESC)":%s/");
+            }else{
+
+            }
+            break;
+
+        case VIM_EXIT:
+            if(record->event.pressed){
+                SEND_STRING(SS_TAP(X_ESC)":wq");
+            }else{
+
+            }
+            break;
+
+        case SQL_SELECT_ALL:
+            if(record->event.pressed){
+                SEND_STRING("SELECT * FROM ");
+            }else{
+
+            }
+            break;
+
+        case DEFAULT:
+            if(record->event.pressed){
+                SEND_STRING("default ");
+            }else{
+
+            }
+            break;
+
+
     }
     return true;
 }
 
-// macro end
-
-// combos
+// SECTION combos
 
 enum combos {
     S_D_X,
@@ -173,7 +346,8 @@ combo_t key_combos[COMBO_COUNT] = {
   [L_DIR_COMBO] = COMBO(l_dir_combo, L_DIR),
   [HOME_DIR_COMBO] = COMBO(home_dir_combo, HOME_DIR),
 };
-// combo end
+
+// SECTION keymap
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -182,7 +356,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
           TMUX_PREFIX,    KC_W,    KC_F,    LSG_T(KC_P),    KC_B,       LSG_T(KC_J),    KC_L,    KC_U,    KC_Y,    KC_SCLN,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-          KC_A,MT(MOD_LCTL | MOD_LGUI,KC_R),C_S_T(KC_S),LCA_T(KC_T),KC_G, /*||*/KC_M,LCA_T(KC_N),C_S_T(KC_E),MT(MOD_LCTL | MOD_LGUI,KC_I), KC_O,
+          LT(4,KC_A),MT(MOD_LCTL | MOD_LGUI,KC_R),C_S_T(KC_S),LCA_T(KC_T),KC_G, /*||*/KC_M,LCA_T(KC_N),C_S_T(KC_E),MT(MOD_LCTL | MOD_LGUI,KC_I), LT(5,KC_O),
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
     SNP_TOG, LCTL_T(KC_K), LALT_T(KC_C), LGUI_T(KC_D),KC_BTN3,     KC_BTN2,    LGUI_T(KC_H), LALT_T(KC_COMM),  LCTL_T(KC_DOT), DRG_TOG,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
@@ -222,6 +396,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_NO, KC_NO, KC_NO,  KC_CAPS, XXXXXXX,    XXXXXXX, KC_LBRC,  KC_RBRC, KC_CIRC, XXXXXXX,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______, _______, XXXXXXX,    KC_ENTER, KC_SPACE
+  //                   ╰───────────────────────────╯ ╰──────────────────╯
+  ),
+
+    // TODO: use tap dance for index
+  [LAYER_SHORTCUT] = LAYOUT(
+  // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
+       XXXXXXX, XXXXXXX, INDEX_J, INDEX1, XXXXXXX,    XXXXXXX, SQL_SELECT_ALL, XXXXXXX, LENGTH, XXXXXXX,
+  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
+       KC_NO,   STU_ID, INDEX_I, INDEX0, KC_NO,          XXXXXXX, EXPORT,    DEFAULT, FUNCTION, RETURN,
+  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
+       KC_NO, VIM_REPLACE, VIM_EXIT, LOCALHOST_URL, XXXXXXX,    XXXXXXX, IMPORT,  CONTINUE, KC_CIRC, XXXXXXX,
+  // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
+                         _______, _______, XXXXXXX,    KC_ENTER, KC_SPACE
+  //                   ╰───────────────────────────╯ ╰──────────────────╯
+  ),
+
+  [LAYER_FUNCTION] = LAYOUT(
+  // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, KC_F7, KC_F8, KC_F9, XXXXXXX,
+  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
+       KC_LSFT,LCTL(KC_LGUI), LCTL(KC_LSFT), LCTL(KC_LALT), KC_NO, /*||*/ KC_F10, KC_F4, KC_F5, KC_F6, XXXXXXX,
+  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
+       KC_NO, KC_NO, KC_LALT, KC_LGUI, XXXXXXX,        KC_NO, KC_F1, KC_F2,  KC_F3,  XXXXXXX,
+  // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
+                         _______, _______, XXXXXXX,    KC_F11, KC_F12
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 };
