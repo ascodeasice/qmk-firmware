@@ -20,6 +20,7 @@
 
 #include "quantum.h"
 
+#define CHARYBDIS_DRAGSCROLL_REVERSE_X
 #ifdef POINTING_DEVICE_ENABLE
 #    ifndef NO_CHARYBDIS_KEYCODES
 enum charybdis_keycodes {

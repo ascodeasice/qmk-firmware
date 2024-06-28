@@ -21,6 +21,7 @@ enum charybdis_keymap_layers {
     LAYER_BASE = 0,
     LAYER_NUM,
     LAYER_SYM,
+    LAYER_NAV,
 };
 
 // combos
@@ -101,9 +102,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
           KC_A,    MT(MOD_LCTL | MOD_LGUI,KC_R),    C_S_T(KC_S),    LCA_T(KC_T),    KC_G,       KC_M,    LCA_T(KC_N),    C_S_T(KC_E),    MT(MOD_LCTL | MOD_LGUI,KC_I), KC_O,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-KC_NO, LCTL_T(KC_K), LALT_T(KC_C), LGUI_T(KC_D),KC_NO,     KC_NO,    LGUI_T(KC_H), LALT_T(KC_COMM),  LCTL_T(KC_DOT), KC_NO,
+SNP_TOG, LCTL_T(KC_K), LALT_T(KC_C), LGUI_T(KC_D),KC_BTN3,     KC_BTN2,    LGUI_T(KC_H), LALT_T(KC_COMM),  LCTL_T(KC_DOT), DRG_TOG,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         KC_BTN1,KC_LSFT, LT(2,KC_BSPC),      LT(1,KC_ENTER), KC_SPACE
+                         KC_BTN1,KC_LSFT, LT(2,KC_BSPC),      LT(1,KC_ENTER), LT(3,KC_SPACE)
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
@@ -118,7 +119,6 @@ KC_NO, LCTL_T(KC_K), LALT_T(KC_C), LGUI_T(KC_D),KC_NO,     KC_NO,    LGUI_T(KC_H
                          XXXXXXX, KC_SPACE, KC_ENTER,    XXXXXXX, _______
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
-
   [LAYER_SYM] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        XXXXXXX, KC_ASTR, KC_COMM, KC_DOT, XXXXXXX,    XXXXXXX, KC_LCBR, KC_RCBR, KC_SLASH, XXXXXXX,
@@ -128,6 +128,18 @@ KC_NO, LCTL_T(KC_K), LALT_T(KC_C), LGUI_T(KC_D),KC_NO,     KC_NO,    LGUI_T(KC_H
        KC_NO, KC_AT, KC_HASH,  KC_DOLLAR, XXXXXXX,    XXXXXXX, KC_LBRC,  KC_RBRC, KC_CIRC, XXXXXXX,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          _______, _______, XXXXXXX,    KC_ENTER, LSFT_T(KC_SPACE)
+  //                   ╰───────────────────────────╯ ╰──────────────────╯
+  ),
+    // TOOD: implement the tap dance here for direction
+  [LAYER_NAV] = LAYOUT(
+  // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
+       XXXXXXX, LALT(KC_F4), KC_MS_UP, LALT(KC_TAB), XXXXXXX,    XXXXXXX, KC_APP, KC_UP, XXXXXXX, XXXXXXX,
+  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
+       KC_ESC,   KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT,KC_NO, KC_ENTER,    KC_LEFT, KC_DOWN, KC_RIGHT, XXXXXXX,
+  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
+       KC_NO, KC_NO, KC_NO,  KC_CAPS, XXXXXXX,    XXXXXXX, KC_LBRC,  KC_RBRC, KC_CIRC, XXXXXXX,
+  // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
+                         _______, _______, XXXXXXX,    KC_ENTER, KC_SPACE
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 };
