@@ -294,7 +294,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         case VIM_EXIT:
             if(record->event.pressed){
-                SEND_STRING(SS_TAP(X_ESC)":wq");
+                SEND_STRING(SS_TAP(X_ESC)":wq"SS_TAP(X_ENT));
             }else{
 
             }
@@ -375,7 +375,7 @@ const uint16_t PROGMEM m_comm_minus[]   = {LGUI_T(KC_H), LALT_T(KC_COMM), COMBO_
 const uint16_t PROGMEM e_i_quote[]      = {C_S_T(KC_E), MT(MOD_LCTL | MOD_LGUI, KC_I), COMBO_END};
 const uint16_t PROGMEM n_e_equal[]      = {LCA_T(KC_N), C_S_T(KC_E), COMBO_END};
 const uint16_t PROGMEM m_dot_astr[]     = {LGUI_T(KC_H), LCTL_T(KC_DOT), COMBO_END};
-const uint16_t PROGMEM a_r_del[]        = {KC_A, MT(MOD_LCTL | MOD_LGUI, KC_R), COMBO_END};
+const uint16_t PROGMEM a_r_del[]        = {LT(4,KC_A), MT(MOD_LCTL | MOD_LGUI, KC_R), COMBO_END};
 const uint16_t PROGMEM t_g_lalt_f4[]    = {LCA_T(KC_T), KC_G, COMBO_END};
 const uint16_t PROGMEM n_m_circ[]       = {LCA_T(KC_N), LGUI_T(KC_H), COMBO_END};
 const uint16_t PROGMEM e_comm_dollar[]  = {C_S_T(KC_E), LALT_T(KC_COMM), COMBO_END};
@@ -423,7 +423,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
           LT(4,KC_A),MT(MOD_LCTL | MOD_LGUI,KC_R),C_S_T(KC_S),LCA_T(KC_T),KC_G, /*||*/KC_M,LCA_T(KC_N),C_S_T(KC_E),MT(MOD_LCTL | MOD_LGUI,KC_I), LT(5,KC_O),
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-    SNP_TOG, LCTL_T(KC_K), LALT_T(KC_C), LGUI_T(KC_D),KC_BTN3,     KC_BTN2,    LGUI_T(KC_H), LALT_T(KC_COMM),  LCTL_T(KC_DOT), DRG_TOG,
+    SNP_TOG, LCTL_T(KC_K), LALT_T(KC_C), LGUI_T(KC_D),KC_BTN3,     DRG_TOG,    LGUI_T(KC_H), LALT_T(KC_COMM),  LCTL_T(KC_DOT), KC_BTN2,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          KC_BTN1,KC_LSFT, LT(2,KC_BSPC),      LT(1,KC_ENTER), LT(3,KC_SPACE)
   //                   ╰───────────────────────────╯ ╰──────────────────╯
@@ -455,11 +455,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        XXXXXXX, LALT(KC_F4), KC_MS_UP, LALT(KC_TAB), XXXXXXX,    XXXXXXX, KC_APP, TD(UP_PGUP), XXXXXXX, XXXXXXX,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_ESC,   KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT,KC_NO, KC_ENTER,    TD(LEFT_HOME), TD(DOWN_PGDN), TD(RIGHT_END), XXXXXXX,
+       KC_ESC,   KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT,KC_NO, KC_ENTER,    TD(LEFT_HOME), TD(DOWN_PGDN), TD(RIGHT_END), KC_WH_R,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_NO, KC_LCTL, KC_NO,  KC_CAPS, XXXXXXX,    XXXXXXX, KC_LBRC,  KC_RBRC, KC_CIRC, XXXXXXX,
+       KC_NO, KC_LCTL, KC_NO,  KC_CAPS, XXXXXXX,    XXXXXXX, KC_WH_L,  KC_WH_D, KC_WH_U, XXXXXXX,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
-                         _______, _______, XXXXXXX,    KC_ENTER, KC_SPACE
+                         _______, KC_BTN1, KC_BTN2,    KC_ENTER, KC_SPACE
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 
