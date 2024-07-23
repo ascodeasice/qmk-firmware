@@ -24,6 +24,7 @@ enum charybdis_keymap_layers {
     LAYER_NAV,
     LAYER_SHORTCUT,
     LAYER_FUNCTION,
+    LAYER_MEDIA
 };
 
 // SECTION tap dance
@@ -421,7 +422,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
           TMUX_PREFIX,    KC_W,    KC_F,    LSG_T(KC_P),    KC_B,       LSG_T(KC_J),    KC_L,    KC_U,    KC_Y,    KC_SCLN,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-          LT(4,KC_A),MT(MOD_LCTL | MOD_LGUI,KC_R),C_S_T(KC_S),LCA_T(KC_T),KC_G, /*||*/KC_M,LCA_T(KC_N),C_S_T(KC_E),MT(MOD_LCTL | MOD_LGUI,KC_I), LT(5,KC_O),
+          LT(4,KC_A),MT(MOD_LCTL | MOD_LGUI,KC_R),C_S_T(KC_S),LCA_T(KC_T),LT(6,KC_G), /*||*/KC_M,LCA_T(KC_N),C_S_T(KC_E),MT(MOD_LCTL | MOD_LGUI,KC_I), LT(5,KC_O),
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
     SNP_TOG, LCTL_T(KC_K), LALT_T(KC_C), LGUI_T(KC_D),KC_BTN3,     DRG_TOG,    LGUI_T(KC_H), LALT_T(KC_COMM),  LCTL_T(KC_DOT), KC_BTN2,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
@@ -480,6 +481,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, KC_F7, KC_F8, KC_F9, XXXXXXX,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_LSFT,LCTL(KC_LGUI), LCTL(KC_LSFT), LCTL(KC_LALT), KC_NO, /*||*/ KC_F10, KC_F4, KC_F5, KC_F6, XXXXXXX,
+  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
+       KC_NO, KC_NO, KC_LALT, KC_LGUI, XXXXXXX,        KC_NO, KC_F1, KC_F2,  KC_F3,  XXXXXXX,
+  // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
+                         _______, _______, XXXXXXX,    KC_F11, KC_F12
+  //                   ╰───────────────────────────╯ ╰──────────────────╯
+  ),
+  [LAYER_MEDIA] = LAYOUT(
+  // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX,
+  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
+       KC_LSFT,LCTL(KC_LGUI), LCTL(KC_LSFT), LCTL(KC_LALT), KC_NO, /*||*/ KC_MUTE, KC_VOLD, KC_VOLU, KC_BRID, KC_BRIU,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_NO, KC_NO, KC_LALT, KC_LGUI, XXXXXXX,        KC_NO, KC_F1, KC_F2,  KC_F3,  XXXXXXX,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯

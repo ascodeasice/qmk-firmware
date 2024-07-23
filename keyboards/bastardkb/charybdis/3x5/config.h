@@ -20,7 +20,7 @@
 
 /* Trackball angle adjustment. */
 #define ROTATIONAL_TRANSFORM_ANGLE -25
-#define COMBO_COUNT 24
+#define COMBO_COUNT 25
 #define TAPPING_TERM 200
 
 /* SECTION mouse key*/
@@ -28,8 +28,8 @@
 
 #define MOUSEKEY_DELAY 0
 
-#define MOUSEKEY_TIME_TO_MAX 20
+#define MOUSEKEY_TIME_TO_MAX 25
 
-#define MOUSEKEY_MAX_SPEED 6
+#define MOUSEKEY_MAX_SPEED 5
 
 #define MOUSEKEY_WHEEL_DELAY 0
