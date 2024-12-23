@@ -350,7 +350,6 @@ enum combos {
     E_I_QUOTE,
     N_E_EQUAL,
     M_DOT_ASTR,
-    A_R_DEL,
     T_G_LALT_F4,
     N_M_CIRC,
     E_COMM_DOLLAR,
@@ -376,7 +375,6 @@ const uint16_t PROGMEM m_comm_minus[]   = {LGUI_T(KC_H), LALT_T(KC_COMM), COMBO_
 const uint16_t PROGMEM e_i_quote[]      = {C_S_T(KC_E), MT(MOD_LCTL | MOD_LGUI, KC_I), COMBO_END};
 const uint16_t PROGMEM n_e_equal[]      = {LCA_T(KC_N), C_S_T(KC_E), COMBO_END};
 const uint16_t PROGMEM m_dot_astr[]     = {LGUI_T(KC_H), LCTL_T(KC_DOT), COMBO_END};
-const uint16_t PROGMEM a_r_del[]        = {LT(4,KC_A), MT(MOD_LCTL | MOD_LGUI, KC_R), COMBO_END};
 const uint16_t PROGMEM t_g_lalt_f4[]    = {LCA_T(KC_T), KC_G, COMBO_END};
 const uint16_t PROGMEM n_m_circ[]       = {LCA_T(KC_N), LGUI_T(KC_H), COMBO_END};
 const uint16_t PROGMEM e_comm_dollar[]  = {C_S_T(KC_E), LALT_T(KC_COMM), COMBO_END};
@@ -402,7 +400,6 @@ combo_t key_combos[COMBO_COUNT] = {
   [E_I_QUOTE] = COMBO(e_i_quote, KC_QUOTE),
   [N_E_EQUAL] = COMBO(n_e_equal, KC_EQUAL),
   [M_DOT_ASTR] = COMBO(m_dot_astr, KC_ASTR),
-  [A_R_DEL] = COMBO(a_r_del, KC_DEL),
   [T_G_LALT_F4] = COMBO(t_g_lalt_f4, LALT(KC_F4)),
   [N_M_CIRC] = COMBO(n_m_circ, KC_CIRC),
   [E_COMM_DOLLAR] = COMBO(e_comm_dollar, KC_DOLLAR),
@@ -432,7 +429,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [LAYER_NUM] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX, XXXXXXX,
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,    KC_COLON,    XXXXXXX,    XXXXXXX, XXXXXXX,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_1, KC_2, KC_3, KC_4, KC_5,                    KC_6,    KC_7,    KC_8,    KC_9, KC_0,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
@@ -445,7 +442,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        XXXXXXX, KC_ASTR, KC_COMM, KC_DOT, XXXXXXX,    XXXXXXX, KC_LCBR, KC_RCBR, KC_BSLS, XXXXXXX,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_EXCLAIM,   KC_GRAVE, KC_SCLN, KC_EQUAL, KC_PERCENT,    KC_BSPC, KC_LPRN, KC_RPRN, KC_AMPR, XXXXXXX,
+       KC_EXCLAIM,   KC_GRAVE, KC_SCLN, KC_EQUAL, KC_PERCENT,    KC_BSPC, KC_LPRN, KC_RPRN, KC_AMPR, KC_PIPE,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_NO, KC_AT, KC_HASH,  KC_DOLLAR, XXXXXXX,    XXXXXXX, KC_LBRC,  KC_RBRC, KC_CIRC, XXXXXXX,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
@@ -453,8 +450,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
   [LAYER_NAV] = LAYOUT(
-  // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       XXXXXXX, LALT(KC_F4), KC_MS_UP, LALT(KC_TAB), XXXXXXX,    XXXXXXX, KC_APP, TD(UP_PGUP), XXXXXXX, XXXXXXX,
+  // ╭─────────────────────────────────────────────────────────╮╭─────────────────────────────────╮
+       XXXXXXX, LALT(KC_F4), KC_MS_UP, LALT(KC_TAB), XXXXXXX,    XXXXXXX, KC_APP, TD(UP_PGUP), KC_DEL, XXXXXXX,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_ESC,   KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT,KC_NO, KC_ENTER,    TD(LEFT_HOME), TD(DOWN_PGDN), TD(RIGHT_END), KC_WH_R,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
