@@ -33,3 +33,9 @@
 #define MOUSEKEY_MAX_SPEED 5
 
 #define MOUSEKEY_WHEEL_DELAY 0
+
+// use right hand right top key for bootmagic
+// reference to info.json for row and column
+// https://github.com/qmk/qmk_firmware/blob/master/docs/reference_info_json.md
+#define BOOTMAGIC_ROW_RIGHT 4
+#define BOOTMAGIC_COLUMN_RIGHT 0
