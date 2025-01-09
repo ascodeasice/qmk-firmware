@@ -83,3 +83,7 @@
 #        define ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
 #    endif // !__arm__
 #endif
+
+
+# define COMBO_TERM 25
+# define TAP_CODE_DELAY 12
