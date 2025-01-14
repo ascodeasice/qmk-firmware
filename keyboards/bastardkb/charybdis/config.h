@@ -87,3 +87,4 @@
 
 # define COMBO_TERM 25
 # define TAP_CODE_DELAY 12
+#define FORCE_NKRO

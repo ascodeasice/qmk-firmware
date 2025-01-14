@@ -24,7 +24,8 @@ enum charybdis_keymap_layers {
     LAYER_NAV,
     LAYER_SHORTCUT,
     LAYER_FUNCTION,
-    LAYER_MEDIA
+    LAYER_MEDIA,
+    LAYER_STENO
 };
 
 // SECTION tap dance
@@ -359,6 +360,8 @@ enum combos {
     KEY_COMBO,
     L_DIR_COMBO,
     HOME_DIR_COMBO,
+    TO_STENO_COMBO,
+    OUT_STENO_COMBO
 };
 
 const uint16_t PROGMEM s_d_x[]          = {C_S_T(KC_S), LGUI_T(KC_D), COMBO_END};
@@ -384,6 +387,8 @@ const uint16_t PROGMEM or_combo[]  = { KC_RCBR, KC_BSLS , COMBO_END};
 const uint16_t PROGMEM key_combo[]  = { LSG_T(KC_P), LCA_T(KC_T), COMBO_END};
 const uint16_t PROGMEM l_dir_combo[]  = { MT(MOD_LCTL|MOD_LGUI,KC_R), KC_W, COMBO_END};
 const uint16_t PROGMEM home_dir_combo[]  = {KC_W,LSG_T(KC_P), COMBO_END};
+const uint16_t PROGMEM to_steno_combo[]  = {LCTL_T(KC_K), LALT_T(KC_C), LGUI_T(KC_D) ,COMBO_END};
+const uint16_t PROGMEM out_steno_combo[]  = {KC_S,KC_D,KC_F ,COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
   [S_D_X] = COMBO(s_d_x, KC_X),
@@ -409,6 +414,8 @@ combo_t key_combos[COMBO_COUNT] = {
   [KEY_COMBO] = COMBO(key_combo, KEY),
   [L_DIR_COMBO] = COMBO(l_dir_combo, L_DIR),
   [HOME_DIR_COMBO] = COMBO(home_dir_combo, HOME_DIR),
+  [TO_STENO_COMBO]=COMBO(to_steno_combo,TG(7)),
+  [OUT_STENO_COMBO]=COMBO(out_steno_combo,TG(7))
 };
 
 // SECTION keymap
@@ -495,5 +502,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                          _______, _______, XXXXXXX,    KC_F11, KC_F12
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
+  [LAYER_STENO] = LAYOUT(
+  // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
+       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
+       KC_Q,KC_W, KC_E, KC_R, KC_T, /*||*/KC_U, KC_I, KC_O,KC_P, KC_LBRC,
+  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
+       KC_A,KC_S,KC_D,KC_F,KC_G, /*||*/KC_J,KC_K,KC_L,KC_SCLN,KC_QUOT,
+  // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
+                         KC_BTN1, KC_C,KC_V,   KC_N, KC_M
+  //                   ╰───────────────────────────╯ ╰──────────────────╯
+  ),
 };
+// TODO: add toggle steno lock as the left most thumb key in steno layer
 // clang-format on
