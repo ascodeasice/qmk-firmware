@@ -388,7 +388,7 @@ const uint16_t PROGMEM key_combo[]  = { LSG_T(KC_P), LCA_T(KC_T), COMBO_END};
 const uint16_t PROGMEM l_dir_combo[]  = { MT(MOD_LCTL|MOD_LGUI,KC_R), KC_W, COMBO_END};
 const uint16_t PROGMEM home_dir_combo[]  = {KC_W,LSG_T(KC_P), COMBO_END};
 const uint16_t PROGMEM to_steno_combo[]  = {LCTL_T(KC_K), LALT_T(KC_C), LGUI_T(KC_D) ,COMBO_END};
-const uint16_t PROGMEM out_steno_combo[]  = {KC_S,KC_D,KC_F ,COMBO_END};
+const uint16_t PROGMEM out_steno_combo[]  = {KC_2,KC_3,KC_4 ,COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
   [S_D_X] = COMBO(s_d_x, KC_X),
@@ -504,7 +504,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [LAYER_STENO] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+       XXXXXXX, KC_2, KC_3, KC_4, XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_Q,KC_W, KC_E, KC_R, KC_T, /*||*/KC_U, KC_I, KC_O,KC_P, KC_LBRC,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
