@@ -361,7 +361,9 @@ enum combos {
     L_DIR_COMBO,
     HOME_DIR_COMBO,
     TO_STENO_COMBO,
-    OUT_STENO_COMBO
+    OUT_STENO_COMBO,
+    LPAREN_COMBO,
+    RPAREN_COMBO,
 };
 
 const uint16_t PROGMEM s_d_x[]          = {C_S_T(KC_S), LGUI_T(KC_D), COMBO_END};
@@ -389,6 +391,8 @@ const uint16_t PROGMEM l_dir_combo[]  = { MT(MOD_LCTL|MOD_LGUI,KC_R), KC_W, COMB
 const uint16_t PROGMEM home_dir_combo[]  = {KC_W,LSG_T(KC_P), COMBO_END};
 const uint16_t PROGMEM to_steno_combo[]  = {LCTL_T(KC_K), LALT_T(KC_C), LGUI_T(KC_D) ,COMBO_END};
 const uint16_t PROGMEM out_steno_combo[]  = {KC_2,KC_3,KC_4 ,COMBO_END};
+const uint16_t PROGMEM lparen_combo[]  = {LCA_T(KC_N),KC_L,COMBO_END};
+const uint16_t PROGMEM rparen_combo[]  = {KC_U,C_S_T(KC_E) , COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
   [S_D_X] = COMBO(s_d_x, KC_X),
@@ -415,7 +419,9 @@ combo_t key_combos[COMBO_COUNT] = {
   [L_DIR_COMBO] = COMBO(l_dir_combo, L_DIR),
   [HOME_DIR_COMBO] = COMBO(home_dir_combo, HOME_DIR),
   [TO_STENO_COMBO]=COMBO(to_steno_combo,TG(7)),
-  [OUT_STENO_COMBO]=COMBO(out_steno_combo,TG(7))
+  [OUT_STENO_COMBO]=COMBO(out_steno_combo,TG(7)),
+  [LPAREN_COMBO]=COMBO(lparen_combo,KC_LPRN),
+  [RPAREN_COMBO]=COMBO(rparen_combo,KC_RPRN)
 };
 
 // SECTION keymap
@@ -424,7 +430,7 @@ combo_t key_combos[COMBO_COUNT] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_BASE] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-          TMUX_PREFIX,    KC_W,    KC_F,    LSG_T(KC_P),    KC_B,       LSG_T(KC_J),    KC_L,    KC_U,    KC_Y,    KC_SCLN,
+          TMUX_PREFIX,    KC_W,    KC_F,    LSG_T(KC_P),    KC_B, /*|| */       LSG_T(KC_J),    KC_L,    KC_U,    KC_Y,    KC_SCLN,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
           LT(4,KC_A),MT(MOD_LCTL | MOD_LGUI,KC_R),C_S_T(KC_S),LCA_T(KC_T),LT(6,KC_G), /*||*/KC_M,LCA_T(KC_N),C_S_T(KC_E),MT(MOD_LCTL | MOD_LGUI,KC_I), LT(5,KC_O),
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
@@ -458,7 +464,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [LAYER_NAV] = LAYOUT(
   // ╭─────────────────────────────────────────────────────────╮╭─────────────────────────────────╮
-       XXXXXXX, LALT(KC_F4), KC_MS_UP, LALT(KC_TAB), XXXXXXX,    XXXXXXX, KC_APP, TD(UP_PGUP), KC_DEL, XXXXXXX,
+       XXXXXXX, XXXXXXX, KC_MS_UP, LALT(KC_TAB), XXXXXXX,    XXXXXXX, KC_APP, TD(UP_PGUP), KC_DEL, XXXXXXX,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_ESC,   KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT,KC_NO, KC_ENTER,    TD(LEFT_HOME), TD(DOWN_PGDN), TD(RIGHT_END), KC_WH_R,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
