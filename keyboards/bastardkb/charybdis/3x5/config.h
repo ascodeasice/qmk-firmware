@@ -39,3 +39,6 @@
 // https://github.com/qmk/qmk_firmware/blob/master/docs/reference_info_json.md
 #define BOOTMAGIC_ROW_RIGHT 4
 #define BOOTMAGIC_COLUMN_RIGHT 0
+
+// SECTION: emoji
+#define UNICODE_SELECTED_MODES UNICODE_MODE_LINUX

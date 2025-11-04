@@ -216,7 +216,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         case STU_ID:
             if(record->event.pressed){
-                SEND_STRING("E24106254");
+                SEND_STRING("P76144435");
             }else{
 
             }
@@ -424,6 +424,17 @@ combo_t key_combos[COMBO_COUNT] = {
   [RPAREN_COMBO]=COMBO(rparen_combo,KC_RPRN)
 };
 
+// SECTION: emoji
+enum unicode_names {
+    TOMATO, BANANA, PEPPER
+};
+
+const uint32_t unicode_map[] = {
+    [TOMATO] = 0x1F345, // 🍅
+    [BANANA] = 0x1F34C,  // 🍌
+    [PEPPER]  = 0x1FAD1, // 🫑
+};
+
 // SECTION keymap
 
 // clang-format off
@@ -478,7 +489,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        XXXXXXX, CONST, INDEX_J, INDEX1, XXXXXXX,    XXXXXXX, SQL_SELECT_ALL, XXXXXXX, LENGTH, XXXXXXX,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_NO,   STU_ID, INDEX_I, INDEX0, KC_NO,          XXXXXXX, EXPORT,    DEFAULT, FUNCTION, RETURN,
+       KC_NO,   STU_ID, INDEX_I, INDEX0, KC_NO,          XXXXXXX, UM(TOMATO),    UM(BANANA), UM(PEPPER), RETURN,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_NO, VIM_REPLACE, VIM_EXIT, LOCALHOST_URL, XXXXXXX,    XXXXXXX, IMPORT,  CONTINUE, KC_CIRC, XXXXXXX,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
