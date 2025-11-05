@@ -426,13 +426,14 @@ combo_t key_combos[COMBO_COUNT] = {
 
 // SECTION: emoji
 enum unicode_names {
-    TOMATO, BANANA, PEPPER
+    TOMATO, BANANA, PEPPER,BLUEBERRY,
 };
 
 const uint32_t unicode_map[] = {
     [TOMATO] = 0x1F345, // 🍅
     [BANANA] = 0x1F34C,  // 🍌
     [PEPPER]  = 0x1FAD1, // 🫑
+    [BLUEBERRY]  = 0x1FAD0, // 🫐
 };
 
 // SECTION keymap
@@ -489,7 +490,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        XXXXXXX, CONST, INDEX_J, INDEX1, XXXXXXX,    XXXXXXX, SQL_SELECT_ALL, XXXXXXX, LENGTH, XXXXXXX,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_NO,   STU_ID, INDEX_I, INDEX0, KC_NO,          XXXXXXX, UM(TOMATO),    UM(BANANA), UM(PEPPER), RETURN,
+       KC_NO,   STU_ID, INDEX_I, INDEX0, KC_NO,          XXXXXXX, UM(TOMATO),    UM(BANANA), UM(BLUEBERRY), UM(PEPPER),
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_NO, VIM_REPLACE, VIM_EXIT, LOCALHOST_URL, XXXXXXX,    XXXXXXX, IMPORT,  CONTINUE, KC_CIRC, XXXXXXX,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
