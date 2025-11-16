@@ -488,9 +488,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [LAYER_SHORTCUT] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       XXXXXXX, CONST, INDEX_J, INDEX1, XXXXXXX,    XXXXXXX, SQL_SELECT_ALL, XXXXXXX, LENGTH, XXXXXXX,
+       XXXXXXX, CONST, INDEX_J, INDEX1, XXXXXXX,    XXXXXXX, SQL_SELECT_ALL, UM(PEPPER), LENGTH, XXXXXXX,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_NO,   STU_ID, INDEX_I, INDEX0, KC_NO,          XXXXXXX, UM(TOMATO),    UM(BANANA), UM(BLUEBERRY), UM(PEPPER),
+       KC_NO,   STU_ID, INDEX_I, INDEX0, KC_NO,          XXXXXXX, UM(TOMATO),    UM(BANANA), UM(BLUEBERRY), RETURN,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_NO, VIM_REPLACE, VIM_EXIT, LOCALHOST_URL, XXXXXXX,    XXXXXXX, IMPORT,  CONTINUE, KC_CIRC, XXXXXXX,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
