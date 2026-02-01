@@ -20,7 +20,7 @@
 
 /* Trackball angle adjustment. */
 #define ROTATIONAL_TRANSFORM_ANGLE -25
-#define COMBO_COUNT 28
+#define COMBO_COUNT 29
 #define TAPPING_TERM 200
 
 /* SECTION mouse key*/

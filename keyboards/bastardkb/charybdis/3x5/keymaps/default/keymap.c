@@ -111,6 +111,8 @@ enum macros {
     SQL_SELECT_ALL,
     DEFAULT,
     ARROW,
+    FOUR_SPACES,
+    C_COMMENTS,
 };
 
 // Macro Definitions
@@ -327,6 +329,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
 
+        case FOUR_SPACES:
+            if (record->event.pressed) {
+                SEND_STRING("    ");
+            } else {
+
+            }
+            break;
+
+        case C_COMMENTS:
+            if (record->event.pressed) {
+                SEND_STRING("/*  */" SS_TAP(X_LEFT) SS_TAP(X_LEFT) SS_TAP(X_LEFT));
+            } else {
+
+            }
+            break;
+
         // list all tap dance keycodes with tap-hold configurations
         case TD(UP_PGUP):
         case TD(DOWN_PGDN):
@@ -374,6 +392,7 @@ enum combos {
     LPAREN_COMBO,
     RPAREN_COMBO,
     ARROW_COMBO,
+    FOUR_SPACES_COMBO,
 };
 
 const uint16_t PROGMEM s_d_x[]          = {C_S_T(KC_S), LGUI_T(KC_D), COMBO_END};
@@ -404,6 +423,7 @@ const uint16_t PROGMEM out_steno_combo[]  = {KC_2,KC_3,KC_4 ,COMBO_END};
 const uint16_t PROGMEM lparen_combo[]  = {LCA_T(KC_N),KC_L,COMBO_END};
 const uint16_t PROGMEM rparen_combo[]  = {KC_U,C_S_T(KC_E) , COMBO_END};
 const uint16_t PROGMEM arrow_combo[]  = {KC_L,    KC_U, COMBO_END};
+const uint16_t PROGMEM four_spaces_combo[]  = {KC_L, KC_Y, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
   [S_D_X] = COMBO(s_d_x, KC_X),
@@ -433,7 +453,8 @@ combo_t key_combos[COMBO_COUNT] = {
   [OUT_STENO_COMBO]=COMBO(out_steno_combo,TG(7)),
   [LPAREN_COMBO]=COMBO(lparen_combo,KC_LPRN),
   [RPAREN_COMBO]=COMBO(rparen_combo,KC_RPRN),
-  [ARROW_COMBO]=COMBO(arrow_combo,ARROW)
+  [ARROW_COMBO]=COMBO(arrow_combo,ARROW),
+  [FOUR_SPACES_COMBO]=COMBO(four_spaces_combo,FOUR_SPACES)
 };
 
 // SECTION: emoji
@@ -502,7 +523,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        XXXXXXX, CONST, INDEX_J, INDEX1, XXXXXXX,    XXXXXXX, SQL_SELECT_ALL, UM(PEPPER), LENGTH, XXXXXXX,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_NO,   STU_ID, INDEX_I, INDEX0, KC_NO,          XXXXXXX, UM(TOMATO),    UM(BANANA), UM(BLUEBERRY), RETURN,
+       KC_NO,   STU_ID, INDEX_I, INDEX0, KC_NO,          C_COMMENTS, UM(TOMATO),    UM(BANANA), UM(BLUEBERRY), RETURN,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_NO, VIM_REPLACE, VIM_EXIT, LOCALHOST_URL, XXXXXXX,    XXXXXXX, IMPORT,  CONTINUE, KC_CIRC, XXXXXXX,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
