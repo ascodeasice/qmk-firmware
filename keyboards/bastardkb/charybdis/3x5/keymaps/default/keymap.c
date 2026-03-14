@@ -113,6 +113,7 @@ enum macros {
     ARROW,
     FOUR_SPACES,
     C_COMMENTS,
+    ALIGN_ENV,
 };
 
 // Macro Definitions
@@ -345,6 +346,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
 
+        case ALIGN_ENV:
+            if (record->event.pressed) {
+                SEND_STRING("\\begin{align}" SS_TAP(X_ENTER) SS_TAP(X_ENTER) "\\end{align}" SS_TAP(X_UP));
+            } else {
+
+            }
+            break;
+
         // list all tap dance keycodes with tap-hold configurations
         case TD(UP_PGUP):
         case TD(DOWN_PGDN):
@@ -521,7 +530,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [LAYER_SHORTCUT] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       XXXXXXX, CONST, INDEX_J, INDEX1, XXXXXXX,    XXXXXXX, SQL_SELECT_ALL, UM(PEPPER), LENGTH, XXXXXXX,
+       XXXXXXX, CONST, INDEX_J, INDEX1, XXXXXXX,    XXXXXXX, SQL_SELECT_ALL, UM(PEPPER), LENGTH, ALIGN_ENV,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_NO,   STU_ID, INDEX_I, INDEX0, KC_NO,          C_COMMENTS, UM(TOMATO),    UM(BANANA), UM(BLUEBERRY), RETURN,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
