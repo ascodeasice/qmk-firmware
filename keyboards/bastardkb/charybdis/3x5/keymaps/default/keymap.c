@@ -110,7 +110,6 @@ enum macros {
     VIM_EXIT,
     SQL_SELECT_ALL,
     DEFAULT,
-    ARROW,
     FOUR_SPACES,
     C_COMMENTS,
     ALIGN_ENV,
@@ -314,14 +313,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
 
-        case ARROW:
-            if(record->event.pressed){
-                SEND_STRING("->");
-            }else{
-
-            }
-            break;
-
         case DEFAULT:
             if(record->event.pressed){
                 SEND_STRING("default ");
@@ -400,7 +391,7 @@ enum combos {
     OUT_STENO_COMBO,
     LPAREN_COMBO,
     RPAREN_COMBO,
-    ARROW_COMBO,
+    BACKSLASH_COMBO,
     FOUR_SPACES_COMBO,
 };
 
@@ -431,7 +422,7 @@ const uint16_t PROGMEM to_steno_combo[]  = {LCTL_T(KC_K), LALT_T(KC_C), LGUI_T(K
 const uint16_t PROGMEM out_steno_combo[]  = {KC_2,KC_3,KC_4 ,COMBO_END};
 const uint16_t PROGMEM lparen_combo[]  = {LCA_T(KC_N),KC_L,COMBO_END};
 const uint16_t PROGMEM rparen_combo[]  = {KC_U,C_S_T(KC_E) , COMBO_END};
-const uint16_t PROGMEM arrow_combo[]  = {KC_L,    KC_U, COMBO_END};
+const uint16_t PROGMEM backslash_combo[]  = {KC_L,    KC_U, COMBO_END};
 const uint16_t PROGMEM four_spaces_combo[]  = {KC_L, KC_Y, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
@@ -462,7 +453,7 @@ combo_t key_combos[COMBO_COUNT] = {
   [OUT_STENO_COMBO]=COMBO(out_steno_combo,TG(7)),
   [LPAREN_COMBO]=COMBO(lparen_combo,KC_LPRN),
   [RPAREN_COMBO]=COMBO(rparen_combo,KC_RPRN),
-  [ARROW_COMBO]=COMBO(arrow_combo,ARROW),
+  [BACKSLASH_COMBO]=COMBO(backslash_combo,KC_BSLS),
   [FOUR_SPACES_COMBO]=COMBO(four_spaces_combo,FOUR_SPACES)
 };
 
