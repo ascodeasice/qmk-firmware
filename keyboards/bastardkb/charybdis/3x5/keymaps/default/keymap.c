@@ -97,6 +97,7 @@ enum macros {
     EXPORT,
     IMPORT,
     CONTINUE,
+    USERNAME,
     STU_ID,
     INDEX_I,
     INDEX_J,
@@ -212,6 +213,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case CONTINUE:
             if(record->event.pressed){
                 SEND_STRING("continue");
+            }else{
+
+            }
+            break;
+
+        case USERNAME:
+            if(record->event.pressed){
+                SEND_STRING("ascodeasice");
             }else{
 
             }
@@ -523,7 +532,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
        XXXXXXX, CONST, INDEX_J, INDEX1, XXXXXXX,    XXXXXXX, SQL_SELECT_ALL, UM(PEPPER), LENGTH, ALIGN_ENV,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
-       KC_NO,   STU_ID, INDEX_I, INDEX0, KC_NO,          C_COMMENTS, UM(TOMATO),    UM(BANANA), UM(BLUEBERRY), RETURN,
+       KC_NO,   STU_ID, USERNAME, INDEX0, KC_NO,          C_COMMENTS, UM(TOMATO),    UM(BANANA), UM(BLUEBERRY), RETURN,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_NO, VIM_REPLACE, VIM_EXIT, LOCALHOST_URL, XXXXXXX,    XXXXXXX, IMPORT,  CONTINUE, KC_CIRC, XXXXXXX,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
