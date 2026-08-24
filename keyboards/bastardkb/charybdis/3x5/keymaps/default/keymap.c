@@ -105,7 +105,7 @@ enum macros {
     INDEX0,
     INDEX1,
     INDEX2,
-    LENGTH,
+    MD_LINE,
     LOCALHOST_URL,
     VIM_REPLACE,
     VIM_EXIT,
@@ -282,9 +282,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
 
-        case LENGTH:
+        case MD_LINE:
             if(record->event.pressed){
-                SEND_STRING("length");
+                SEND_STRING("---" SS_TAP(X_ENTER) SS_TAP(X_ENTER));
             }else{
 
             }
@@ -530,7 +530,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [LAYER_SHORTCUT] = LAYOUT(
   // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
-       XXXXXXX, CONST, INDEX_J, INDEX1, XXXXXXX,    XXXXXXX, SQL_SELECT_ALL, UM(PEPPER), LENGTH, ALIGN_ENV,
+       XXXXXXX, CONST, INDEX_J, INDEX1, XXXXXXX,    XXXXXXX, SQL_SELECT_ALL, UM(PEPPER), MD_LINE, ALIGN_ENV,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
        KC_NO,   STU_ID, USERNAME, INDEX0, KC_NO,          C_COMMENTS, UM(TOMATO),    UM(BANANA), UM(BLUEBERRY), RETURN,
   // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
