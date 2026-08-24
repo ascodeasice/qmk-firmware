@@ -404,6 +404,7 @@ enum combos {
     BACKSLASH_COMBO,
     FOUR_SPACES_COMBO,
     TO_GAME_COMBO,
+    GAME_ESC_COMBO,
 };
 
 const uint16_t PROGMEM s_d_x[]          = {C_S_T(KC_S), LGUI_T(KC_D), COMBO_END};
@@ -436,6 +437,8 @@ const uint16_t PROGMEM rparen_combo[]  = {KC_U,C_S_T(KC_E) , COMBO_END};
 const uint16_t PROGMEM backslash_combo[]  = {KC_L,    KC_U, COMBO_END};
 const uint16_t PROGMEM four_spaces_combo[]  = {KC_L, KC_Y, COMBO_END};
 const uint16_t PROGMEM to_game_combo[]  = {KC_W, KC_F, LSG_T(KC_P), COMBO_END};
+// same physical keys as r_t_esc on the base layer
+const uint16_t PROGMEM game_esc_combo[]  = {KC_A, KC_D, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
   [S_D_X] = COMBO(s_d_x, KC_X),
@@ -467,18 +470,18 @@ combo_t key_combos[COMBO_COUNT] = {
   [RPAREN_COMBO]=COMBO(rparen_combo,KC_RPRN),
   [BACKSLASH_COMBO]=COMBO(backslash_combo,KC_BSLS),
   [FOUR_SPACES_COMBO]=COMBO(four_spaces_combo,FOUR_SPACES),
-  [TO_GAME_COMBO]=COMBO(to_game_combo,TO(LAYER_GAME))
+  [TO_GAME_COMBO]=COMBO(to_game_combo,TO(LAYER_GAME)),
+  [GAME_ESC_COMBO]=COMBO(game_esc_combo,KC_ESC)
 };
 
-// Disable combos on the game layer: simultaneous presses like W+F are normal
-// in games and must not fire a combo.
-layer_state_t layer_state_set_user(layer_state_t state) {
-    if (layer_state_cmp(state, LAYER_GAME)) {
-        combo_disable();
-    } else {
-        combo_enable();
+// Only the ESC combo is allowed on the game layer: simultaneous presses like
+// W+F are normal in games and must not fire a combo. Conversely the game ESC
+// combo must not fire anywhere else.
+bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
+    if (layer_state_is(LAYER_GAME)) {
+        return combo_index == GAME_ESC_COMBO;
     }
-    return state;
+    return combo_index != GAME_ESC_COMBO;
 }
 
 // SECTION: emoji

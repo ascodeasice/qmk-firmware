@@ -20,7 +20,9 @@
 
 /* Trackball angle adjustment. */
 #define ROTATIONAL_TRANSFORM_ANGLE -25
-#define COMBO_COUNT 30
+#define COMBO_COUNT 31
+// enables the combo_should_trigger() hook used to gate combos per layer
+#define COMBO_SHOULD_TRIGGER
 #define TAPPING_TERM 200
 
 /* SECTION mouse key*/
