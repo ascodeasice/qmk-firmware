@@ -25,7 +25,8 @@ enum charybdis_keymap_layers {
     LAYER_SHORTCUT,
     LAYER_FUNCTION,
     LAYER_MEDIA,
-    LAYER_STENO
+    LAYER_STENO,
+    LAYER_GAME
 };
 
 // SECTION tap dance
@@ -402,6 +403,7 @@ enum combos {
     RPAREN_COMBO,
     BACKSLASH_COMBO,
     FOUR_SPACES_COMBO,
+    TO_GAME_COMBO,
 };
 
 const uint16_t PROGMEM s_d_x[]          = {C_S_T(KC_S), LGUI_T(KC_D), COMBO_END};
@@ -433,6 +435,7 @@ const uint16_t PROGMEM lparen_combo[]  = {LCA_T(KC_N),KC_L,COMBO_END};
 const uint16_t PROGMEM rparen_combo[]  = {KC_U,C_S_T(KC_E) , COMBO_END};
 const uint16_t PROGMEM backslash_combo[]  = {KC_L,    KC_U, COMBO_END};
 const uint16_t PROGMEM four_spaces_combo[]  = {KC_L, KC_Y, COMBO_END};
+const uint16_t PROGMEM to_game_combo[]  = {KC_W, KC_F, LSG_T(KC_P), COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
   [S_D_X] = COMBO(s_d_x, KC_X),
@@ -463,8 +466,20 @@ combo_t key_combos[COMBO_COUNT] = {
   [LPAREN_COMBO]=COMBO(lparen_combo,KC_LPRN),
   [RPAREN_COMBO]=COMBO(rparen_combo,KC_RPRN),
   [BACKSLASH_COMBO]=COMBO(backslash_combo,KC_BSLS),
-  [FOUR_SPACES_COMBO]=COMBO(four_spaces_combo,FOUR_SPACES)
+  [FOUR_SPACES_COMBO]=COMBO(four_spaces_combo,FOUR_SPACES),
+  [TO_GAME_COMBO]=COMBO(to_game_combo,TO(LAYER_GAME))
 };
+
+// Disable combos on the game layer: simultaneous presses like W+F are normal
+// in games and must not fire a combo.
+layer_state_t layer_state_set_user(layer_state_t state) {
+    if (layer_state_cmp(state, LAYER_GAME)) {
+        combo_disable();
+    } else {
+        combo_enable();
+    }
+    return state;
+}
 
 // SECTION: emoji
 enum unicode_names {
@@ -571,6 +586,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_A,KC_S,KC_D,KC_F,KC_G, /*||*/KC_J,KC_K,KC_L,KC_SCLN,KC_QUOT,
   // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
                          KC_BTN1, KC_C,KC_V,   KC_N, KC_M
+  //                   ╰───────────────────────────╯ ╰──────────────────╯
+  ),
+  [LAYER_GAME] = LAYOUT(
+  // ╭─────────────────────────────────────────────╮ ╭─────────────────────────────────────────────╮
+       KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,        KC_Y,    KC_U,    KC_I,    KC_O,    TO(LAYER_BASE),
+  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
+       KC_LSFT, KC_A,    KC_S,    KC_D,    KC_F,        KC_N,    KC_J,    KC_K,    KC_L,    KC_ENT,
+  // ├─────────────────────────────────────────────┤ ├─────────────────────────────────────────────┤
+       KC_LCTL, KC_Z,    KC_X,    KC_C,    KC_V,        KC_B,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
+  // ╰─────────────────────────────────────────────┤ ├─────────────────────────────────────────────╯
+                         KC_BTN1, KC_SPACE, KC_LCTL,     KC_ESC, KC_SPACE
   //                   ╰───────────────────────────╯ ╰──────────────────╯
   ),
 };
